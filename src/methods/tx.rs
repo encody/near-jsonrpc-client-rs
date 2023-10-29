@@ -60,8 +60,11 @@ impl RpcMethod for RpcTransactionStatusRequest {
             TransactionInfo::Transaction(signed_transaction) => {
                 json!([common::serialize_signed_transaction(signed_transaction)?])
             }
-            TransactionInfo::TransactionId { hash, account_id } => {
-                json!([hash, account_id])
+            TransactionInfo::TransactionId {
+                tx_hash,
+                sender_account_id,
+            } => {
+                json!([tx_hash, sender_account_id])
             }
         })
     }
