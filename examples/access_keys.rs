@@ -5,7 +5,7 @@ use near_primitives::types::BlockReference;
 mod utils;
 
 fn indent(indentation: usize, s: String) -> String {
-    let mut lines = s.split_inclusive("\n");
+    let mut lines = s.split_inclusive('\n');
     let mut r = lines.next().unwrap().to_string();
     for l in lines {
         r.push_str(&" ".repeat(indentation - 3));

@@ -4,6 +4,7 @@ pub use near_jsonrpc_primitives::types::transactions::{
     RpcBroadcastTxSyncResponse, RpcTransactionError,
 };
 pub use near_primitives::transaction::SignedTransaction;
+use near_primitives::views::TxExecutionStatus;
 
 #[derive(Debug)]
 pub struct RpcCheckTxRequest {
@@ -11,11 +12,12 @@ pub struct RpcCheckTxRequest {
 }
 
 impl From<RpcCheckTxRequest>
-    for near_jsonrpc_primitives::types::transactions::RpcBroadcastTransactionRequest
+    for near_jsonrpc_primitives::types::transactions::RpcSendTransactionRequest
 {
     fn from(this: RpcCheckTxRequest) -> Self {
         Self {
             signed_transaction: this.signed_transaction,
+            wait_until: TxExecutionStatus::default(),
         }
     }
 }

@@ -12,7 +12,7 @@ rust-version = "1.67.1"
 
 [dependencies]
 log = "0.4.17"
-borsh = "0.10.2"
+borsh = "1"
 serde = "1.0.145"
 reqwest = { version = "0.11.12", features = ["json"], default-features = false }
 thiserror = "1.0.37"
@@ -41,3 +41,11 @@ name = "auth"
 
 [package.metadata.docs.rs]
 features = ["any", "sandbox"]
+
+[patch.crates-io]
+near-o11y = { path = "../nearcore/core/o11y" }
+near-chain-configs = { path = "../nearcore/core/chain-configs" }
+near-crypto = { path = "../nearcore/core/crypto" }
+near-primitives = { path = "../nearcore/core/primitives" }
+near-primitives-core = { path = "../nearcore/core/primitives-core" }
+near-jsonrpc-primitives = { path = "../nearcore/chain/jsonrpc-primitives" }

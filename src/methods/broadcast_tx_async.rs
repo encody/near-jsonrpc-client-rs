@@ -1,6 +1,7 @@
 use super::*;
 
 pub use near_primitives::transaction::SignedTransaction;
+use near_primitives::views::TxExecutionStatus;
 
 pub type RpcBroadcastTxAsyncResponse = near_primitives::hash::CryptoHash;
 
@@ -10,11 +11,12 @@ pub struct RpcBroadcastTxAsyncRequest {
 }
 
 impl From<RpcBroadcastTxAsyncRequest>
-    for near_jsonrpc_primitives::types::transactions::RpcBroadcastTransactionRequest
+    for near_jsonrpc_primitives::types::transactions::RpcSendTransactionRequest
 {
     fn from(this: RpcBroadcastTxAsyncRequest) -> Self {
         Self {
             signed_transaction: this.signed_transaction,
+            wait_until: TxExecutionStatus::default(),
         }
     }
 }
